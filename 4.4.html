@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 80%;
+            margin: auto;
+        }
+
+        .gallery-images {
+            display: flex;
+            overflow: hidden;
+            width: 60%;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+
+        .gallery-images img {
+            width: 100%;
+            max-width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-images-inner {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .gallery-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>GALLERY</h1>
+    <div class="gallery-container">
+        <button class="gallery-button" id="prev">«</button>
+        <div class="gallery-images">
+            <div class="gallery-images-inner">
+                <img src="https://via.placeholder.com/400x300?text=Image+1" alt="Image 1">
+                <img src="https://via.placeholder.com/400x300?text=Image+2" alt="Image 2">
+                <img src="https://via.placeholder.com/400x300?text=Image+3" alt="Image 3">
+                <img src="https://via.placeholder.com/400x300?text=Image+4" alt="Image 4">
+                <img src="https://via.placeholder.com/400x300?text=Image+5" alt="Image 5">
+            </div>
+        </div>
+        <button class="gallery-button" id="next">»</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const imagesInner = $(".gallery-images-inner");
+            const imageWidth = $(".gallery-images img").outerWidth(true);
+            const totalImages = $(".gallery-images img").length;
+            let currentIndex = 0;
+
+            // Xử lý sự kiện nút "Next"
+            $("#next").click(function () {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    imagesInner.css("transform", `translateX(-${imageWidth * currentIndex}px)`);
+                }
+            });
+
+            // Xử lý sự kiện nút "Prev"
+            $("#prev").click(function () {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    imagesInner.css("transform", `translateX(-${imageWidth * currentIndex}px)`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra input trống</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("input[type='text']").blur(function() {
+                if ($(this).val() === "") {
+                    $(this).addClass("error");
+                } else {
+                    $(this).removeClass("error");
+                }
+            });
+        });
+    </script>
+    <style>
+        .error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="Nhập dữ liệu 1">
+    <input type="text" placeholder="Nhập dữ liệu 2">
+</body>
+</html>

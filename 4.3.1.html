@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Datepicker</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #datepicker {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Chọn Ngày</h2>
+    <input type="text" id="datepicker" placeholder="Chọn ngày...">
+
+    <script>
+        $(document).ready(function () {
+            // Khởi tạo Datepicker
+            $("#datepicker").datepicker({
+                dateFormat: "dd/mm/yy", // Định dạng ngày
+                minDate: -7, // Cho phép chọn từ 7 ngày trước
+                maxDate: "+7D" // Cho phép chọn 7 ngày sau
+            });
+        });
+    </script>
+</body>
+</html>

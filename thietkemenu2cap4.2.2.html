@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Rút Xuống</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Thiết kế cơ bản menu */
+        .menu {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .menu > div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+        }
+
+        .menu > div:hover {
+            background-color: #555;
+        }
+
+        /* Thiết kế menu con */
+        .submenu {
+            display: none;
+            background-color: #444;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div>
+            Thời sự
+            <div class="submenu">
+                <a href="#">Tin mới</a>
+                <a href="#">Xã hội</a>
+            </div>
+        </div>
+        <div>
+            Thể thao
+            <div class="submenu">
+                <a href="#">Bóng đá</a>
+                <a href="#">Cầu lông</a>
+            </div>
+        </div>
+        <div>
+            Giải trí
+            <div class="submenu">
+                <a href="#">Phim ảnh</a>
+                <a href="#">Ca nhạc</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Hiển thị menu con khi hover
+            $(".menu > div").hover(
+                function () {
+                    $(this).find(".submenu").stop().slideDown(); // Hiển thị
+                },
+                function () {
+                    $(this).find(".submenu").stop().slideUp(); // Ẩn
+                }
+            );
+        });
+    </script>
+</body>
+</html>

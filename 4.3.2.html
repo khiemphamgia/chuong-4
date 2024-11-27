@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Popup</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #login-form {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        #login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        #login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .ui-dialog-titlebar {
+            background-color: #FF4D4D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-form">
+        <h2>Đăng Nhập</h2>
+        <input type="text" id="username" placeholder="Tên đăng nhập">
+        <input type="password" id="password" placeholder="Mật khẩu">
+        <button id="login-button">Đăng Nhập</button>
+    </div>
+
+    <!-- Popup Dialog Thông báo lỗi -->
+    <div id="error-dialog" title="Thông Báo Lỗi" style="display: none;">
+        <p>Thông tin đăng nhập không chính xác. Vui lòng kiểm tra lại!</p>
+    </div>
+
+    <!-- Popup Dialog Xác nhận lỗi -->
+    <div id="confirm-dialog" title="Xác Nhận" style="display: none;">
+        <p>Bạn đã nhập sai thông tin đăng nhập. Có muốn thử lại không?</p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Khi bấm nút "Đăng Nhập"
+            $("#login-button").click(function () {
+                const username = $("#username").val();
+                const password = $("#password").val();
+
+                if (username === "" || password === "") {
+                    // Trường hợp thông báo lỗi
+                    $("#error-dialog").dialog({
+                        modal: true,
+                        buttons: {
+                            "OK": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                } else {
+                    // Trường hợp xác nhận lỗi
+                    $("#confirm-dialog").dialog({
+                        modal: true,
+                        buttons: {
+                            "Thử Lại": function () {
+                                $(this).dialog("close");
+                                $("#username").val("");
+                                $("#password").val("");
+                            },
+                            "Hủy": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

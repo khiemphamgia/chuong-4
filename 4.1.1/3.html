@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lấy option</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const options = $("#country option").map(function() {
+                return $(this).text();
+            }).get().join(", ");
+            alert("Các tùy chọn: " + options);
+        });
+    </script>
+</head>
+<body>
+    <select id="country">
+        <option>Việt Nam</option>
+        <option>Mỹ</option>
+        <option>Nhật Bản</option>
+    </select>
+</body>
+</html>

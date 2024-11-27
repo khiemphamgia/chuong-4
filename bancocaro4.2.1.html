@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn Cờ Caro</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Thiết kế bàn cờ */
+        #caro-board {
+            display: grid;
+            grid-template-columns: repeat(10, 40px); /* 10 cột, mỗi ô 40px */
+            gap: 1px;
+            margin: 20px auto;
+            background-color: black; /* Màu đường viền */
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #f2f2f2;
+        }
+
+        /* Dòng chẵn và lẻ có màu sắc khác nhau */
+        .row-even .cell {
+            background-color: #d1e0e0; /* Màu dòng chẵn */
+        }
+
+        .row-odd .cell {
+            background-color: #e6e6e6; /* Màu dòng lẻ */
+        }
+
+        /* Hiệu ứng biến mất */
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls" style="text-align: center; margin-bottom: 10px;">
+        <button id="show-board">Xuất hiện</button>
+        <button id="hide-board">Biến mất</button>
+        <button id="toggle-board">Toggle</button>
+    </div>
+    <div id="caro-board"></div>
+
+    <script>
+        $(document).ready(function () {
+            const size = 10; // Kích thước bàn cờ (10x10)
+            const board = $("#caro-board");
+            let currentPlayer = "X"; // Người chơi bắt đầu
+
+            // Tạo bàn cờ
+            for (let i = 0; i < size; i++) {
+                const rowClass = i % 2 === 0 ? "row-even" : "row-odd"; // Dòng chẵn lẻ
+                for (let j = 0; j < size; j++) {
+                    board.append(`<div class="cell ${rowClass}"></div>`);
+                }
+            }
+
+            // Xử lý sự kiện click để đánh X và O xen kẽ
+            $(".cell").on("click", function () {
+                if ($(this).text() === "") {
+                    $(this).text(currentPlayer);
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
+                }
+            });
+
+            // Hiệu ứng xuất hiện
+            $("#show-board").on("click", function () {
+                board.removeClass("hidden").fadeIn();
+            });
+
+            // Hiệu ứng biến mất
+            $("#hide-board").on("click", function () {
+                board.fadeOut(function () {
+                    board.addClass("hidden");
+                });
+            });
+
+            // Hiệu ứng toggle
+            $("#toggle-board").on("click", function () {
+                board.toggle();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkbox chọn</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("input[type='checkbox']").change(function() {
+                const checkedValues = $("input[type='checkbox']:checked").map(function() {
+                    return this.value;
+                }).get().join(", ");
+                alert("Các giá trị được chọn: " + checkedValues);
+            });
+        });
+    </script>
+</head>
+<body>
+    <label><input type="checkbox" value="A"> A</label>
+    <label><input type="checkbox" value="B"> B</label>
+    <label><input type="checkbox" value="C"> C</label>
+</body>
+</html>

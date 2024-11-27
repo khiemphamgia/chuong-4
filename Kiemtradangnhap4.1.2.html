@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra Đăng nhập</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(e) {
+                e.preventDefault();
+                const username = $("#username").val();
+                const password = $("#password").val();
+                if (username === "" || password === "") {
+                    $("#message").text("Vui lòng điền đầy đủ thông tin.").css("color", "red");
+                } else {
+                    $("#message").text("Chào mừng, Bạn đã đăng nhập thành công!").css("color", "green");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password"><br>
+        <span id="message"></span><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
